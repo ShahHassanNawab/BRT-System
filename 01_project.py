@@ -16,7 +16,72 @@ buses = [
 ticket= {}
 
 def welcome ():
+    print("=="*30)
     print("Welcome to BRT Islamabad ")
+    print("="*30)
+
+def admin_menu():
+    print("=====================================")
+    print("1. Admin")
+    print("2. User")
+    print("======================================")
+
+def admin():
+    
+    Admin_name = "Admin"
+    Admin_pin = "admin@123"
+    correct = False
+    
+    for i in range (3):
+        name = input("Enter Admin Name: ")
+        pin = input("Enter PIN: ")
+
+        if name == Admin_name and pin == Admin_pin:
+            correct = True
+            break
+        else:
+            print('Wrong PIN Try Again')
+        
+    if (correct):
+        print("Admin Login Sucessfully")
+    else:
+         print("Account Block some movement")
+
+
+def add_station():
+    print("="*45)
+    print("Add Station")
+    print()
+    name = input("Enter Station Name: ")
+
+
+    stations.append(name)
+    print("Station Add Sucessfully ")
+
+
+def add_bus():
+    print()
+    busNo = input("Enter Bus No: ")
+    Departure = input("Enter Bus Departure: ")
+    seats = int(input("Enter seats Number: "))
+
+    Ad_bus = {
+        "bus_no":busNo,
+        "departure": Departure,
+        "seats":seats
+    }
+
+    buses.append(Ad_bus)
+    for Ad_bus in buses:
+
+        print("="*45)
+        print("Bus No: ",Ad_bus["bus_no"])
+        print("Departure: ",Ad_bus["departure"])
+        print("seats: ", Ad_bus["seats"])
+        print("="*45)
+
+    print(Ad_bus)
+
 
 def menu():
     print("1. View All Stations")
@@ -47,7 +112,9 @@ def search_station():
     name = input("Enter station name:")
     
     if name in stations:
+        print("Station is ",stations)
         print("Station found")
+
     else: 
         print("Station not found")    
 
@@ -90,27 +157,36 @@ def view_ticket():
     print("Fare      : Rs.", ticket["fare"])
     
 while True:
-    print("=====================")
     welcome()
-    menu()
-    choice = int(input("Enter your choice: "))
 
-    if choice == 1:
-        view_stations()
-    elif choice == 2:
-        view_buses()
-    elif choice == 3:
-        search_station()
-    elif choice == 4:
-        check_fare()
-    elif choice == 5:
-        buy_ticket()
-    elif choice == 6:
-        view_ticket()
-    elif choice == 7:
-        print("\nThank you for using BRT Islamabad. Goodbye!")
-        break
+    admin_menu()
+    choice1 = int(input("Enter Your choice: "))
+    if choice1 == 1:
+        print(":::::::::::::::: Admin Activate ::::::::::::")
+        admin()
+        add_station()
+        add_bus()
+
     else:
-        print("Select Invilid Number ")
+        menu()
+        choice = int(input("Enter your choice: "))
+
+        if choice == 1:
+            view_stations()
+        elif choice == 2:
+            view_buses()
+        elif choice == 3:
+            search_station()
+        elif choice == 4:
+            check_fare()
+        elif choice == 5:
+            buy_ticket()
+        elif choice == 6:
+            view_ticket()
+        elif choice == 7:
+            print("\nThank you for using BRT Islamabad. Goodbye!")
+            break
+        else:
+            print("Select Invilid Number ")
 
 
