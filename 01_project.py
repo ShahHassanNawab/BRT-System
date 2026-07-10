@@ -20,12 +20,14 @@ def welcome ():
     print("Welcome to BRT Islamabad ")
     print("="*30)
 
-def admin_menu():
+## Admin and user Allow  system
+def Login_menu():
     print("=====================================")
     print("1. Admin")
     print("2. User")
     print("======================================")
 
+# Admin Login System
 def admin():
     
     Admin_name = "Admin"
@@ -46,6 +48,14 @@ def admin():
         print("Admin Login Sucessfully")
     else:
          print("Account Block some movement")
+
+
+def admin_Menu():
+    print("What Admin Want")
+    print("1. Add Station")
+    print("2. Add Bus")
+    print("3. Exit")
+    print()
 
 
 def add_station():
@@ -119,11 +129,12 @@ def search_station():
         print("Station not found")    
 
 def check_fare():
+    print(stations)
     From = input("From: ")
     To = input("To: ")
 
     if From in stations and To in stations:
-        fare = 30
+        fare = 40
         print("rs", fare)
     else:
         print("invilid Station name")
@@ -159,13 +170,21 @@ def view_ticket():
 while True:
     welcome()
 
-    admin_menu()
+    Login_menu()
     choice1 = int(input("Enter Your choice: "))
     if choice1 == 1:
         print(":::::::::::::::: Admin Activate ::::::::::::")
-        admin()
-        add_station()
-        add_bus()
+        admin()  ## Login System
+
+        admin_Menu()  ## What Admin want to edit
+        choice2 = int(input("Admin Choice: "))
+        if choice2 == 1:
+            add_station()
+        elif choice2 == 2:
+            add_bus()
+        elif choice2 == 3:
+            print("Thanks")
+            
 
     else:
         menu()
